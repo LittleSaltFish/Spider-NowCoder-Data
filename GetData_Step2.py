@@ -122,7 +122,7 @@ if __name__ == "__main__":
     JudgeLength = 2.5
     SleepTime = 0.1
     Filename = time.strftime("%d-%H-%M-%S", time.localtime(time.time()))
-    with open("Data_Step1.csv", "r", encoding="utf-8") as csvFileRead, open(
+    with open("./Result/Data_Step1.csv", "r", encoding="utf-8") as csvFileRead, open(
         f"./Result/Step2/{Filename}.csv", "a+", encoding="utf-8"
     ) as csvFileWrite:
         Reader = csv.reader(csvFileRead)
