@@ -65,7 +65,7 @@ def GetMoreMessage(request_url, headers, USER_AGENTS):
     if soup.find_all(text="该职位已下线"):
         return ["Null", "Null", "Null", "Null", "Null"]
 
-    FileName = str(time.strftime("%Y-%H-%M-%S", time.localtime(time.time())))
+    FileName = str(time.strftime("%d-%H-%M-%S", time.localtime(time.time())))
     with open(f"./HtmlFiles/Step2/{FileName}.html", "w+", encoding="utf-8") as f:
         f.write(response.text)
 
@@ -121,12 +121,13 @@ def GetMoreMessage(request_url, headers, USER_AGENTS):
 if __name__ == "__main__":
     JudgeLength = 2.5
     SleepTime = 0.1
-    Filename = time.strftime("%Y-%H-%M-%S", time.localtime(time.time()))
+    Filename = time.strftime("%d-%H-%M-%S", time.localtime(time.time()))
     with open("Data_Step1.csv", "r", encoding="utf-8") as csvFileRead, open(
         f"./Result/Step2/{Filename}.csv", "a+", encoding="utf-8"
     ) as csvFileWrite:
         Reader = csv.reader(csvFileRead)
         for i, j in zip(Reader, tqdm(range(5000))):
+            print(SleepTime)
             time.sleep(SleepTime)
             Time1 = time.time()
             tmp = GetMoreMessage(i[2], headers, USER_AGENTS)
@@ -134,7 +135,7 @@ if __name__ == "__main__":
             if Time2 - Time1 >= JudgeLength:
                 SleepTime *= 2
             else:
-                SleepTime = 0.5
+                SleepTime = 0.1
             for j in i:
                 csvFileWrite.write(f"{j},")
             for k in tmp:

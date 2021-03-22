@@ -57,7 +57,7 @@ def GetSinglePage(request_url, headers, USER_AGENTS,PageNu):
     if soup.find(name="div", attrs={"class": "empty-tip-mod"}):
         return False
 
-    FileName = "Page"+str(PageNu)+" "+str(time.strftime("%Y-%H-%M-%S", time.localtime(time.time())))
+    FileName = "Page"+str(PageNu)+" "+str(time.strftime("%D-%H-%M-%S", time.localtime(time.time())))
     with open(
         f"./HtmlFiles/Step1/{FileName}.html",
         "w+",
@@ -120,7 +120,7 @@ if __name__ == "__main__":
             print("Not Found!")
             break
 
-    FileName = time.strftime("%Y-%H-%M-%S", time.localtime(time.time()))
+    FileName = time.strftime("%D-%H-%M-%S", time.localtime(time.time()))
     with open(
         f"./Result/Step1/{FileName}.csv",
         "w+",
